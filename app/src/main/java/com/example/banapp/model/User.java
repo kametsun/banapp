@@ -17,7 +17,6 @@ public class User {
     public User() {
     }
 
-    /*  */
     public User(int id, String name, int cigarettePrice, int cigarettePerDay) {
         this.id = id;
         this.name = name;
