@@ -23,11 +23,13 @@ import java.nio.charset.StandardCharsets;
  */
 
 public class UserRepository {
+    private static final String URL = "http://10.0.2.2:8000/";
+
     // IdからUserオブジェクトを返す
     public static void getUserById(int id, GetUerListener listener) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://10.0.2.2:8000/users/" + id);
+                URL url = new URL(URL + "users/" + id);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -65,10 +67,12 @@ public class UserRepository {
         }).start();
     }
 
+    // ユーザを作成する
+
     public static void createUserIntoDB(User user, CreateUserListener listener) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://10.0.2.2:8000/users/");
+                URL url = new URL(URL + "users/");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -107,11 +111,54 @@ public class UserRepository {
         }).start();
     }
 
+    // コインを変更する
+
+    public static void updateUserCoins(int userId, int coin, UpdateUserCoinsListener listener) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(URL + "users/" + userId + "/coin");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("PATCH");
+                connection.setRequestProperty("Content-Type", "application/json; utf-8");
+                connection.setDoOutput(true);
+
+                JSONObject jsonBody = new JSONObject();
+                jsonBody.put("coin", coin);
+
+                try (OutputStream outputStream = connection.getOutputStream()) {
+                    byte[] input = jsonBody.toString().getBytes(StandardCharsets.UTF_8);
+                    outputStream.write(input, 0, input.length);
+                }
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    if (listener != null) {
+                        new Handler(Looper.getMainLooper()).post(() -> listener.updateUserCoinsListener(userId, coin));
+                    }
+                }
+            } catch (IOException | JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
     public interface GetUerListener {
         void getUserListener(User user);
     }
 
     public interface CreateUserListener {
         void createUserListener(User user);
+    }
+
+    public interface UpdateUserCoinsListener {
+        void updateUserCoinsListener(int userId, int coin);
     }
 }
