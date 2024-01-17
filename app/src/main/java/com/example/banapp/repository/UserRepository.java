@@ -2,8 +2,6 @@ package com.example.banapp.repository;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-
 import com.example.banapp.model.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,10 +9,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
