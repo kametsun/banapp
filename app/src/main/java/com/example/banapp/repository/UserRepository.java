@@ -1,46 +1,59 @@
 package com.example.banapp.repository;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.example.banapp.model.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class UserRepository {
+    public interface GetUerListener {
+        void  getUserListener(User user);
+    }
+
     // IdからUserオブジェクトを返す
-    public static User getUserById(int id) {
-        try {
-            URL url = new URL("http://localhost:8000/users/" + id);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+    public static void getUserById(int id, GetUerListener listener) {
+        new Thread(() -> {
+            try {
+                URL url = new URL("http://10.0.2.2:8000/users/" + id);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
 
-            connection.connect();   //接続
+                connection.connect();   // 実行
 
-            int responseCode = connection.getResponseCode();    // レスポンスコード確認
-            Log.d(String.valueOf(responseCode), "エラー");
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    Gson gson = new Gson();
+                    Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
+                    ArrayList<User> users = gson.fromJson(response.toString(), userListType);
+                    User user = users.get(0);
+                    if (listener != null) {
+                        new Handler(Looper.getMainLooper()).post(() -> listener.getUserListener(user));
+                    }
                 }
-                reader.close();
-
-                Gson gson = new Gson();
-                return gson.fromJson(response.toString(), User.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        }).start();
     }
 }

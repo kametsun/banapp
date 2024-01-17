@@ -9,11 +9,10 @@ public class User {
      */
     private int id;
     private String name;
-    private int cigarettePrice;
-    private int cigarettePerDay;
+    private int cigarette_price;
+    private int cigarette_per_day;
     private int coin;
-    private LocalDateTime createdAt;
-
+    
     public int getId() {
         return id;
     }
@@ -30,20 +29,20 @@ public class User {
         this.name = name;
     }
 
-    public int getCigarettePrice() {
-        return cigarettePrice;
+    public int getCigarette_price() {
+        return cigarette_price;
     }
 
-    public void setCigarettePrice(int cigarettePrice) {
-        this.cigarettePrice = cigarettePrice;
+    public void setCigarette_price(int cigarette_price) {
+        this.cigarette_price = cigarette_price;
     }
 
-    public int getCigarettePerDay() {
-        return cigarettePerDay;
+    public int getCigarette_per_day() {
+        return cigarette_per_day;
     }
 
-    public void setCigarettePerDay(int cigarettePerDay) {
-        this.cigarettePerDay = cigarettePerDay;
+    public void setCigarette_per_day(int cigarette_per_day) {
+        this.cigarette_per_day = cigarette_per_day;
     }
 
     public int getCoin() {
@@ -52,13 +51,5 @@ public class User {
 
     public void setCoin(int coin) {
         this.coin = coin;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 }
