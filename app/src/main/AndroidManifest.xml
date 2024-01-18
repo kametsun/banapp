@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- ネットワーク権限
+    <!--
+         ネットワーク権限
         <application android:usesCleartextTraffic="true" /> -> HTTPの平文許可 -> できればHTTPSにしたい
     -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,14 +14,15 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Banapp"
-        tools:targetApi="31"
-
         android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
-        >
+        tools:targetApi="31">
+        <activity
+            android:name=".UserRegistrationActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,5 +1,7 @@
 package com.example.banapp.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
     /*
      * モデルはモデルに関するロジックを実現したりするクラス。
@@ -9,12 +11,20 @@ public class User {
      */
     private int id;
     private String name;
+    @SerializedName("cigarette_price")
     private int cigarettePrice;
+    @SerializedName("cigarette_per_day")
     private int cigarettePerDay;
     private int coin;
 
     // デフォルトコンストラクタ -> 新規登録とかでプロパティを入れていってAPIに渡す
     public User() {
+    }
+
+    public User(String name, int cigarettePrice, int cigarettePerDay) {
+        this.name = name;
+        this.cigarettePrice = cigarettePrice;
+        this.cigarettePerDay = cigarettePerDay;
     }
 
     public User(int id, String name, int cigarettePrice, int cigarettePerDay) {
