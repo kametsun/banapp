@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">banapp</string>
+
+    <!-- ユーザ登録 -->
     <string name="tv_ask_user_name">あなたのお名前を教えください！</string>
     <string name="tv_ask_cigarette_num">吸っている煙草は一箱何円ですか！</string>
     <string name="tv_ask_cigarette_per_day">一日に平均で何本煙草を吸いますか！</string>
@@ -7,4 +9,9 @@
     <string name="et_cigarette_per_day_hint">例：20</string>
     <string name="et_user_name_hint">例：亀窪翼</string>
     <string name="bt_save">保存</string>
+
+    <!-- ペットの名前を決める -->
+    <string name="pet_registration">ペットの名前を決めよう!</string>
+    <string name="bt_create_pet">名前を決定</string>
+    <string name="et_pet_name_hint">例：kametsun</string>
 </resources>
