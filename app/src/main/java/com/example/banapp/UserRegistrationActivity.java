@@ -1,5 +1,6 @@
 package com.example.banapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -36,6 +37,8 @@ public class UserRegistrationActivity extends AppCompatActivity {
 
             UserRepository.createUserIntoDB(newUser, user -> {
                 saveUserId(user.getId());
+                Intent intent = new Intent(UserRegistrationActivity.this, PetRegistrationActivity.class);
+                startActivity(intent);
             });
         });
     }

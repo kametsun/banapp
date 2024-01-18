@@ -21,22 +21,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".petRegistrationActivity"
+            android:name=".PetRegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".UserRegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Banapp">
+            android:exported="true">
+            <!-- 起動するactivityを変更するには以下をactivityタグの中に入れる -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Banapp"></activity>
     </application>
 
 </manifest>
