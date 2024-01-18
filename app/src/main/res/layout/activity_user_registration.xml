@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B978E"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <!-- 質問1 -->
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="70sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/tv_ask_user_name" />
+
+    <!-- 質問2 -->
+    <EditText
+        android:id="@+id/etUserNameInput"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_style"
+        android:hint="@string/et_user_name_hint" />
+
+    <TextView
+        android:id="@+id/cigarette_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/tv_ask_cigarette_num" />
+
+    <EditText
+        android:id="@+id/etCigarettePriceInput"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_style"
+        android:hint="@string/et_cigarette_price_hint" />
+
+    <!-- 質問3 -->
+    <TextView
+        android:id="@+id/tvPetRegistration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/tv_ask_cigarette_per_day" />
+
+    <!-- 登録ボタン -->
+
+    <EditText
+        android:id="@+id/etCigarettePerDayInput"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_style"
+        android:hint="@string/et_cigarette_per_day_hint" />
+
+    <Button
+        android:id="@+id/btSave"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#DF5DA8"
+        android:insetTop="10dp"
+        android:text="@string/bt_save" />
+
+</LinearLayout>
