@@ -1,8 +1,10 @@
 package com.example.banapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +23,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         EditText etCigarettePrice = findViewById(R.id.etCigarettePriceInput);
         EditText etCigarettePerDay = findViewById(R.id.etCigarettePerDayInput);
         Button btSave = findViewById(R.id.btSave);
+        TextView tvAppName = findViewById(R.id.app_name);
 
         // ボタンを押した時の処理
         btSave.setOnClickListener(v -> {
@@ -32,8 +35,20 @@ public class UserRegistrationActivity extends AppCompatActivity {
             User newUser = new User(Name, price, cigarettePerDay);
 
             UserRepository.createUserIntoDB(newUser, user -> {
-                // TODO: ユーザが作成された時の処理を書く
+                saveUserId(user.getId());
             });
         });
+    }
+
+    /* SharedPreferencesクラスを利用してユーザのIDを保持する
+     * https://developer.android.com/training/data-storage/shared-preferences?hl=ja
+     * 基本的にここからユーザIDを取得してAPIなどを呼び起こす
+     * SharePreferencesクラスの操作はActivityなどのContextを持つクラス内でしかできない
+     */
+    private void saveUserId(int userId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", userId);
+        editor.apply();
     }
 }

@@ -34,7 +34,6 @@ public class User {
         this.cigarettePerDay = cigarettePerDay;
     }
 
-
     public int getId() {
         return id;
     }
