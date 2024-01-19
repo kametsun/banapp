@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.banapp.model.Pet;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,9 +19,59 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PetRepository {
     private static final String URL = "http://10.0.2.2:8000/";
+
+    public static void updateDeathAt(Pet pet, UpdateDeathAtListener listener) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(URL + "pets/" + pet.getId() + "/death");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                connection.connect();
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    Log.d("レスポンス200", "なぜ");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    Gson gson = new Gson();
+                    Log.d("Gsonオブジェ", "どこ");
+                    JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
+                    Log.d("49ぎょうめ", "どこ");
+                    String deathTimeStr = jsonResponse.get("death_time").getAsString();
+
+                    DateTimeFormatter formatter = null;
+                    LocalDateTime deathTime = null;
+
+                    /*
+                     * "death_time": "2024-01-19 22:10:53"
+                     * */
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        deathTime = LocalDateTime.parse(deathTimeStr, formatter);
+                    }
+                    pet.setDeathTime(deathTime);
+                    Log.d("60ぎょうめ ペットの時間 -> ", pet.getDeathTime().toString());
+
+                    if (listener != null) {
+                        new Handler(Looper.getMainLooper()).post(() -> listener.updateDeathAtListener(pet));
+                    }
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
 
     // IdからPetオブジェクトを返す
     public static void getPetById(int id, GetPetListener listener) {
@@ -62,8 +113,6 @@ public class PetRepository {
             }
         }).start();
     }
-
-    // ペット作成エンドポイント
 
     public static void createPetIntoDB(Pet pet, CreatePetIntoDBListener listener) {
         Log.d("ここはcratePetIntoDB", "助けて");
@@ -109,6 +158,8 @@ public class PetRepository {
         }).start();
     }
 
+    // ペット作成エンドポイント
+
     public static void updatePetEnergy(int petId, int energy, UpdatePeteEnergyListener listener) {
         new Thread(() -> {
             try {
@@ -145,6 +196,10 @@ public class PetRepository {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+
+    public interface UpdateDeathAtListener {
+        void updateDeathAtListener(Pet user);
     }
 
     public interface CreatePetIntoDBListener {

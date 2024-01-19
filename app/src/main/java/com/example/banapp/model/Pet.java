@@ -2,6 +2,8 @@ package com.example.banapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.time.LocalDateTime;
+
 /*
  * [
   {
@@ -22,7 +24,8 @@ public class Pet {
     private int userId;
     private String name;
     private int hunger;
-
+    @SerializedName("death_time")
+    private LocalDateTime deathTime;
 
     public Pet() {
     }
@@ -43,6 +46,14 @@ public class Pet {
         this.id = id;
         this.userId = userId;
         this.name = name;
+    }
+
+    public LocalDateTime getDeathTime() {
+        return deathTime;
+    }
+
+    public void setDeathTime(LocalDateTime deathTime) {
+        this.deathTime = deathTime;
     }
 
     public int getId() {
