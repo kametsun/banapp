@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PetRepository {
+    // URL
     private static final String URL = "http://10.0.2.2:8000/";
 
     public static void updateDeathAt(Pet pet, UpdateDeathAtListener listener) {
