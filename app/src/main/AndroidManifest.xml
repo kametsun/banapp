@@ -27,16 +27,21 @@
             android:name=".UserRegistrationActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Banapp">
+            android:name=".AchievementsActivity"
+            android:exported="true">
             <!-- 起動するactivityを変更するには以下をactivityタグの中に入れる -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Banapp">
+
         </activity>
     </application>
 
