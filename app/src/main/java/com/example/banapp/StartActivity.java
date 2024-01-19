@@ -17,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
 
         // Handlerを使用して3秒後にMainActivityに遷移する
         new Handler().postDelayed(() -> {
-            Intent intent = null;
+            Intent intent;
             if (getUserId() != -1) {
                 intent = new Intent(StartActivity.this, MainActivity.class);
             } else {

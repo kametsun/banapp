@@ -3,11 +3,4 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
-
-    <Button
-        android:id="@+id/btNextUser"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Button" />
-</LinearLayout>
+    android:padding="16dp"></LinearLayout>
