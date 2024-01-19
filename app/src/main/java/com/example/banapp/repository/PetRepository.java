@@ -109,11 +109,53 @@ public class PetRepository {
         }).start();
     }
 
+    public static void updatePetEnergy(int petId, int energy, UpdatePeteEnergyListener listener) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(URL + "pets/" + petId + "/hunger");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("PATCH");
+                connection.setRequestProperty("Content-Type", "application/json; utf-8");
+                connection.setDoOutput(true);
+
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("hunger", energy);
+
+                try (OutputStream outputStream = connection.getOutputStream()) {
+                    byte[] input = jsonObject.toString().getBytes(StandardCharsets.UTF_8);
+                    outputStream.write(input, 0, input.length);
+                }
+
+                int responseCode = connection.getResponseCode();
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    if (listener != null) {
+                        new Handler(Looper.getMainLooper()).post(() -> listener.updatePetEnergyListener(energy));
+                    }
+                }
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
     public interface CreatePetIntoDBListener {
         void createPetIntoDB(Pet pet);
     }
 
     public interface GetPetListener {
         void getPetListener(Pet pet);
+    }
+
+    public interface UpdatePeteEnergyListener {
+        void updatePetEnergyListener(int energy);
     }
 }
