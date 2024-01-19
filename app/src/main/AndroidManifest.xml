@@ -28,6 +28,9 @@
             android:exported="true"></activity>
         <activity
             android:name=".AchievementsActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".StartActivity"
             android:exported="true">
             <!-- 起動するactivityを変更するには以下をactivityタグの中に入れる -->
             <intent-filter>
