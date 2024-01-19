@@ -17,7 +17,7 @@ public class AchievementsActivity extends AppCompatActivity {
 //        findViewById(R.id.bt_test_home).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(AchivementActivity.this, HomeActivity.class);
+//                Intent intent = new Intent(AchievementActivity.this, HomeActivity.class);
 //                startActivity(intent);
 //            }
 //        });
@@ -25,7 +25,7 @@ public class AchievementsActivity extends AppCompatActivity {
 //        findViewById(R.id.bt_test_history).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(AchivementActivity.this, HistoryActivity.class);
+//                Intent intent = new Intent(AchievementActivity.this, HistoryActivity.class);
 //                startActivity(intent);
 //            }
 //        });
