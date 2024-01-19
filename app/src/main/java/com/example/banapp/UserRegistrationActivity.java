@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +24,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         EditText etCigarettePrice = findViewById(R.id.etCigarettePriceInput);
         EditText etCigarettePerDay = findViewById(R.id.etCigarettePerDayInput);
         Button btSave = findViewById(R.id.btSave);
+        TextView tvAppName = findViewById(R.id.app_name);
 
         // ボタンを押した時の処理
         btSave.setOnClickListener(v -> {
