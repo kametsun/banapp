@@ -1,6 +1,9 @@
 package com.example.banapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,14 +15,22 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //ボタンを押した時
-//        findViewById(R.id.bt_test_start).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //インテントの追加（これが遷移用ロジックです）
-//                Intent intent = new Intent(HistoryActivity.this, StartActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        // Handlerを使用して3秒後にMainActivityに遷移する
+        new Handler().postDelayed(() -> {
+            Intent intent = null;
+            if (getUserId() != -1) {
+                intent = new Intent(StartActivity.this, MainActivity.class);
+            } else {
+                intent = new Intent(StartActivity.this, UserRegistrationActivity.class);
+            }
+            startActivity(intent);
+            // 現在のアクティビティを終了
+            finish();
+        }, 3000); // 3秒
+    }
+
+    private int getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return sharedPreferences.getInt("userId", -1);
     }
 }
