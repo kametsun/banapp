@@ -26,6 +26,8 @@ public class Pet {
     private int hunger;
     @SerializedName("death_time")
     private LocalDateTime deathTime;
+    @SerializedName("created_at")
+    private LocalDateTime createdAt;
 
     public Pet() {
     }
@@ -35,6 +37,14 @@ public class Pet {
         this.userId = userId;
         this.name = name;
         this.hunger = hunger;
+    }
+
+    public Pet(int id, int userId, String name, int hunger, LocalDateTime createdAt) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.hunger = hunger;
+        this.createdAt = createdAt;
     }
 
     public Pet(int userId, String name) {

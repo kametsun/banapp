@@ -36,7 +36,6 @@ public class PetRepository {
                 connection.connect();
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Log.d("レスポンス200", "なぜ");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String line;
@@ -46,9 +45,7 @@ public class PetRepository {
                     reader.close();
 
                     Gson gson = new Gson();
-                    Log.d("Gsonオブジェ", "どこ");
                     JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
-                    Log.d("49ぎょうめ", "どこ");
                     String deathTimeStr = jsonResponse.get("death_time").getAsString();
 
                     DateTimeFormatter formatter = null;
@@ -94,15 +91,26 @@ public class PetRepository {
                     }
                     reader.close();
 
-                    // JSON配列を解析
                     JSONArray jsonArray = new JSONArray(response.toString());
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+                    DateTimeFormatter formatter;
+                    LocalDateTime createdAt = null;
+
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+                        createdAt = LocalDateTime.parse(jsonObject.getString("created_at"), formatter);
+                        Log.d("101ぎょうめ", "フォーマット完了");
+                    }
+
+                    Log.d("103ぎょうめ", "助けて");
 
                     Pet pet = new Pet(
                             jsonObject.getInt("id"),
                             jsonObject.getInt("user_id"),
                             jsonObject.getString("name"),
-                            jsonObject.getInt("hunger")
+                            jsonObject.getInt("hunger"),
+                            createdAt
                     );
 
                     if (listener != null) {
