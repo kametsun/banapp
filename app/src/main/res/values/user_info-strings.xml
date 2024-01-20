@@ -1,0 +1,6 @@
+<resources>
+    <string name="user_name">ユーザー情報</string>
+    <string name="tv_user_name">ユーザー名</string>
+    <string name="tv_cigarette_num">あなたが吸っている煙草一箱の値段</string>
+    <string name="tv_cigarette_per_day">あなたが一日に吸う煙草の平均本数</string>
+</resources>

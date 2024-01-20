@@ -9,7 +9,7 @@
     tools:context=".ShopActivity">
 
     <ImageButton
-        android:id="@+id/bt_Back_shop"
+        android:id="@+id/bt_Back_user_info"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_Back_shop" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_Back_user_info" />
 
     <TextView
         android:id="@+id/textView2"

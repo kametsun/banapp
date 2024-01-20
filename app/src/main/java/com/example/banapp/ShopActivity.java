@@ -46,7 +46,7 @@ public class ShopActivity extends AppCompatActivity {
         }
 
         //戻る処理
-        findViewById(R.id.bt_Back_shop).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.bt_Back_user_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShopActivity.this, HomeActivity.class);
