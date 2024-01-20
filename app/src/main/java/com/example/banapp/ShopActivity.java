@@ -49,7 +49,7 @@ public class ShopActivity extends AppCompatActivity {
         findViewById(R.id.bt_Back_shop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ShopActivity.this, MainActivity.class);
+                Intent intent = new Intent(ShopActivity.this, HomeActivity.class);
 
                 startActivity(intent);
             }
