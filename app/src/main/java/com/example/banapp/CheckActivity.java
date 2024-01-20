@@ -46,6 +46,7 @@ public class CheckActivity extends AppCompatActivity {
             Log.d("42行目", "ボタンが押された");
             if ((user != null) && (pet != null)) {
                 HistoryRepository.createHistory(user, pet, () -> {
+                    resetPetId();
                     Intent intent = new Intent(CheckActivity.this, DeathActivity.class);
                     startActivity(intent);
                 });
