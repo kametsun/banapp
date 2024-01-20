@@ -116,10 +116,8 @@ public class PetRepository {
     }
 
     public static void createPetIntoDB(Pet pet, CreatePetIntoDBListener listener) {
-        Log.d("ここはcratePetIntoDB", "助けて");
         new Thread(() -> {
             try {
-                Log.d("ここはtryのなか", "助けて");
                 URL url = new URL(URL + "pets/");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -130,7 +128,6 @@ public class PetRepository {
                 String jsonInput = new Gson().toJson(pet);
 
                 try (OutputStream outputStream = connection.getOutputStream()) {
-                    Log.d("ここはtry->try", "助けて");
                     byte[] input = jsonInput.getBytes(StandardCharsets.UTF_8);
                     outputStream.write(input, 0, input.length);
                 }
@@ -150,7 +147,7 @@ public class PetRepository {
                     pet.setId(petId);
 
                     if (listener != null) {
-                        new Handler(Looper.getMainLooper()).post(() -> listener.createPetIntoDB(pet));
+                        new Handler(Looper.getMainLooper()).post(() -> listener.createPetIntoDBListener(pet));
                     }
                 }
             } catch (IOException | JSONException e) {
@@ -204,7 +201,7 @@ public class PetRepository {
     }
 
     public interface CreatePetIntoDBListener {
-        void createPetIntoDB(Pet pet);
+        void createPetIntoDBListener(Pet pet);
     }
 
     public interface GetPetListener {
