@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.981"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_Profile" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_profile" />
 
     <TextView
         android:id="@+id/tv_pet_energy"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_pet_energy" />
 
     <ImageView
-        android:id="@+id/bt_Profile"
+        android:id="@+id/bt_profile"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
@@ -111,13 +111,11 @@
         android:id="@+id/bt_history"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="8dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/history" />
 
     <TextView

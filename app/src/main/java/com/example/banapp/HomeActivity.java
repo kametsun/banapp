@@ -64,6 +64,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         }, 1000); // 初回は1秒後に実行
 
+        //プロフィール画面遷移
+        findViewById(R.id.bt_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //ホーム画面からショップ画面に遷移
+                Intent intent = new Intent(HomeActivity.this, User_infoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //ショップ画面遷移
         findViewById(R.id.bt_shop).setOnClickListener(view -> {
 
