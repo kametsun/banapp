@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class HistoryActivity extends AppCompatActivity {
             // ペットごとにTextViewを作成
             LinearLayout historyLayout = findViewById(R.id.linearLayoutHistory);
 
-            for(String pet:pets) {
+            for(int i=0; i<pets.length; i++) {
                 addTextView(historyLayout,pets[i],days[i],money[i]);
 
             }
@@ -69,7 +70,7 @@ public class HistoryActivity extends AppCompatActivity {
 //            });
 
             //戻る処理
-//            findViewById(R.id.btBackFrom).setOnClickListener(view -> navigateToHome());
+            findViewById(R.id.btBackFromHistory).setOnClickListener(view -> navigateToHome());
         }
 
         private void addTextView(LinearLayout layout,final String pet,final int day,final int money) {
@@ -86,11 +87,14 @@ public class HistoryActivity extends AppCompatActivity {
             textView.setPadding(20,0,20,0);
 
 //            // マージンの設定
-//            params.setMargins(0, 0, 0, 32);
+            params.setMargins(0, 0, 0, 32);
 
 
             // ボタンにレイアウトパラメータを設定
             textView.setLayoutParams(params);
+
+            //文字を中央揃えに設定
+            textView.setGravity(Gravity.CENTER);
 
             //ボタンの色設定
             textView.setBackgroundResource(R.drawable.shape_style_white);
@@ -99,12 +103,14 @@ public class HistoryActivity extends AppCompatActivity {
             layout.addView(textView);
         }
 
-
+        private void navigateToHome() {
+            Intent intent = new Intent(HistoryActivity.this, HomeActivity.class);
+            startActivity(intent);
+        }
 
 
         private int getUserId() {
             SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
             return sharedPreferences.getInt("userId", -1);
         }
-    }
 }
