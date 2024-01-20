@@ -37,15 +37,15 @@ public class HomeActivity extends AppCompatActivity {
         }, 1000); // 初回は1秒後に実行
 
         //ショップ画面遷移
-//        findViewById(R.id.bt_shop).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+        findViewById(R.id.bt_shop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-//                //ホーム画面からショップ画面に遷移
-//                Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+                //ホーム画面からショップ画面に遷移
+                Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //アチーブメント画面遷移
         findViewById(R.id.bt_achievement).setOnClickListener(new View.OnClickListener() {
