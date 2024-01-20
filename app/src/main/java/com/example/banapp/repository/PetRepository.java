@@ -100,10 +100,7 @@ public class PetRepository {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                         formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
                         createdAt = LocalDateTime.parse(jsonObject.getString("created_at"), formatter);
-                        Log.d("101ぎょうめ", "フォーマット完了");
                     }
-
-                    Log.d("103ぎょうめ", "助けて");
 
                     Pet pet = new Pet(
                             jsonObject.getInt("id"),

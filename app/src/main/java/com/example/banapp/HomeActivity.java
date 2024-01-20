@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
         return sharedPreferences.getInt("petId", -1);
     }
 
-    // ローカルのペットIDを取得する
+    // ローカルのユーザIDを取得する
     private int getUserId() {
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         return sharedPreferences.getInt("userId", -1);
