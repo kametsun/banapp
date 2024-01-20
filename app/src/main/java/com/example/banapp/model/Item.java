@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.List;
 
 public class Item {
-    private static final String BASE_URL = "http://10.0.2.2:8000/items/";
+    private static final String BASE_URL = "http://ec2-57-181-83-131.ap-northeast-1.compute.amazonaws.com:8000/items/";
     private int id;
     private String name;
     private int price;

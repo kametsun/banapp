@@ -27,7 +27,7 @@ import java.util.List;
  */
 
 public class UserRepository {
-    private static final String BASE_URL = "http://10.0.2.2:8000/";
+    private static final String BASE_URL = "http://ec2-57-181-83-131.ap-northeast-1.compute.amazonaws.com:8000/";
 
     // IdからUserオブジェクトを返す
     public static void getUserById(int id, GetUerListener listener) {
