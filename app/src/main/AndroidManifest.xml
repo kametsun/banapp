@@ -21,8 +21,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartActivity"
             android:exported="true">
+
             <!-- 起動するactivityを変更するには以下をactivityタグの中に入れる -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
