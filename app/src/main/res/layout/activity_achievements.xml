@@ -22,15 +22,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--戻るボタン-->
-    <Button
-        android:id="@+id/btBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+    <ImageButton
+        android:id="@+id/btBackFromAchievevement"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/bt_achievements_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 
     <!--スクロール-->
@@ -95,8 +95,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
-                    android:backgroundTint="@color/pinkButton"
-                    android:text="@string/bt_achievements_get"
+                    android:backgroundTint="@color/grayButton"
+                    android:text="@string/bt_achievements_unget"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -144,7 +144,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:backgroundTint="@color/grayButton"
-                    android:text="@string/bt_achievements_get"
+                    android:text="@string/bt_achievements_unget"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -192,7 +192,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:backgroundTint="@color/grayButton"
-                    android:text="@string/bt_achievements_get"
+                    android:text="@string/bt_achievements_unget"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -240,7 +240,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:backgroundTint="@color/grayButton"
-                    android:text="@string/bt_achievements_get"
+                    android:text="@string/bt_achievements_unget"
                     android:textColor="@color/black" />
 
             </LinearLayout>
