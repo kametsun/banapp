@@ -3,11 +3,12 @@ package com.example.banapp;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+
+import com.example.banapp.model.Item;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -16,44 +17,44 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-        // 商品一覧のデータ
-        final String[] products = {"クロワッサン", "ラーメン", "アイスクリーム", "ハンバーガー", "ケーキ"};
-        final int[] energies = {30, 80, 40, 60, 100};
-        final int[] prices = {30, 80, 40, 60, 100};
-
         // 商品ごとにボタンを作成
         LinearLayout buttonsLayout = findViewById(R.id.bt_products);
-        for (int i = 0; i < products.length; i++) {
-            int imageResourceId = R.drawable.hatena;
-            if (i == 0) {
-                //クロワッサン画像
-                imageResourceId = R.drawable.croissant;
-            } else if (i == 1) {
-                //ラーメン画像
-                imageResourceId = R.drawable.ramen;
-            } else if (i == 2) {
-                //アイス画像
-                imageResourceId = R.drawable.icecream;
-            } else if (i == 3) {
-                //ハンバーガー画像
-                imageResourceId = R.drawable.hamburger;
-            } else if (i == 4) {
-                //ケーキ画像
-                imageResourceId = R.drawable.cake;
-            }
 
-            addButton(buttonsLayout, products[i], energies[i], prices[i], imageResourceId);
-        }
+        Item.getItems(items -> {
+            runOnUiThread(() -> {
+                for (Item item : items) {
+                    int imageResourceId = getImageResourceId(item.getName());
+                    addButton(buttonsLayout, item.getName(), item.getEnergy(), item.getPrice(), imageResourceId);
+                }
+            });
+        });
 
         //戻る処理
-        findViewById(R.id.bt_Back_shop).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ShopActivity.this, HomeActivity.class);
+        findViewById(R.id.bt_Back_shop).setOnClickListener(view -> {
+            Intent intent = new Intent(ShopActivity.this, HomeActivity.class);
 
-                startActivity(intent);
-            }
+            startActivity(intent);
         });
+    }
+
+    private int getImageResourceId(String name) {
+        switch (name) {
+            case "クロワッサン":
+                return R.drawable.croissant;
+
+            case "ハンバーガー":
+                return R.drawable.hamburger;
+
+            case "アイスクリーム":
+                return R.drawable.icecream;
+
+            case "ラーメン":
+                return R.drawable.ramen;
+
+            case "ケーキ":
+                return R.drawable.cake;
+        }
+        return -1;
     }
 
     private void addButton(LinearLayout layout, final String product, final int energy, final int price, int imageResourceId) {
@@ -83,15 +84,12 @@ public class ShopActivity extends AppCompatActivity {
         button.setBackgroundResource(R.drawable.button);
 
         // ボタンクリック時の処理
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //戻るボタンクリック時の処理
-            public void onClick(View v) {
+        //戻るボタンクリック時の処理
+        button.setOnClickListener(v -> {
 
-                //ショップ画面からホームへ遷移
-                Intent intent = new Intent(ShopActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
+            //ショップ画面からホームへ遷移
+            Intent intent = new Intent(ShopActivity.this, HomeActivity.class);
+            startActivity(intent);
         });
 
         // LinearLayoutにボタンを追加

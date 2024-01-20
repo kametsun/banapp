@@ -27,13 +27,13 @@ import java.util.List;
  */
 
 public class UserRepository {
-    private static final String URL = "http://10.0.2.2:8000/";
+    private static final String BASE_URL = "http://10.0.2.2:8000/";
 
     // IdからUserオブジェクトを返す
     public static void getUserById(int id, GetUerListener listener) {
         new Thread(() -> {
             try {
-                URL url = new URL(URL + "users/" + id);
+                URL url = new URL(BASE_URL + "users/" + id);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -76,7 +76,7 @@ public class UserRepository {
     public static void createUserIntoDB(User user, CreateUserListener listener) {
         new Thread(() -> {
             try {
-                URL url = new URL(URL + "users/");
+                URL url = new URL(BASE_URL + "users/");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -120,7 +120,7 @@ public class UserRepository {
     public static void updateUserCoins(int userId, int coin, UpdateUserCoinsListener listener) {
         new Thread(() -> {
             try {
-                URL url = new URL(URL + "users/" + userId + "/coin");
+                URL url = new URL(BASE_URL + "users/" + userId + "/coin");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("PATCH");
                 connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -158,7 +158,7 @@ public class UserRepository {
     public static void getHistoriesByUserId(int userId, GetHistoriesListener listener) {
         new Thread(() -> {
             try {
-                URL url = new URL(URL + "users/" + userId + "/histories");
+                URL url = new URL(BASE_URL + "users/" + userId + "/histories");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
