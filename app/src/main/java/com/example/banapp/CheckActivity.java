@@ -39,7 +39,7 @@ public class CheckActivity extends AppCompatActivity {
             PetRepository.updateDeathAt(pet, () -> {
                 resetPetId();
             });
-            Intent intent = new Intent(CheckActivity.this, PetRegistrationActivity.class);
+            Intent intent = new Intent(CheckActivity.this, DeathActivity.class);
             startActivity(intent);
             finish();
         });
