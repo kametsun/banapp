@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
     //ペットの画像を切り替えるメソッド
     private void switchCatImage() {
         Random random = new Random();
-        int randomNum = random.nextInt(5);
+        int randomNum = random.nextInt(10);
         if (isCat1Visible) {
             if(randomNum == 0){
                 //4枚目に変更
