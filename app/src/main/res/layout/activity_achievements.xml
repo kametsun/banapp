@@ -36,7 +36,7 @@
     <!--スクロール-->
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@id/svAchievements"
         android:layout_width="405dp"
         android:layout_height="662dp"
         android:layout_marginStart="1dp"
