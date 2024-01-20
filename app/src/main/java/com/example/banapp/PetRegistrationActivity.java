@@ -1,5 +1,6 @@
 package com.example.banapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -26,6 +27,10 @@ public class PetRegistrationActivity extends AppCompatActivity {
 
             PetRepository.createPetIntoDB(newPet, pet -> {
                 savePetId(pet.getId());
+
+                Intent intent = new Intent(PetRegistrationActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
             });
         });
     }

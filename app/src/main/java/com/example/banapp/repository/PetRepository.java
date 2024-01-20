@@ -65,7 +65,7 @@ public class PetRepository {
                     Log.d("60ぎょうめ ペットの時間 -> ", pet.getDeathTime().toString());
 
                     if (listener != null) {
-                        new Handler(Looper.getMainLooper()).post(() -> listener.updateDeathAtListener(pet));
+                        new Handler(Looper.getMainLooper()).post(() -> listener.updateDeathAtListener());
                     }
                 }
             } catch (IOException e) {
@@ -197,7 +197,7 @@ public class PetRepository {
     }
 
     public interface UpdateDeathAtListener {
-        void updateDeathAtListener(Pet user);
+        void updateDeathAtListener();
     }
 
     public interface CreatePetIntoDBListener {

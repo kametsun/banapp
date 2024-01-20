@@ -1,17 +1,26 @@
 package com.example.banapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.banapp.model.Pet;
+import com.example.banapp.model.User;
+import com.example.banapp.repository.PetRepository;
+import com.example.banapp.repository.UserRepository;
 
 public class HomeActivity extends AppCompatActivity {
     private ImageView catImageView;  //画像格納
     private boolean isCat1Visible = true;  //画像を切り替えるためのフラグ
+    private Pet pet;    // ペットオブジェクトを格納する
+    private User user;  // ユーザオブジェクトを格納
+    private TextView tvPetName, tvCoin; //ペットの名前を格納する, コイン数
     private Handler handler; //
 
     @Override
@@ -19,6 +28,25 @@ public class HomeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        tvPetName = findViewById(R.id.pet_name);
+        tvCoin = findViewById(R.id.tv_coin);
+
+        // ユーザを取得
+        UserRepository.getUserById(getUserId(), getedUser -> {
+            user = getedUser;
+            if (user != null) {
+                tvCoin.setText(String.valueOf(user.getCoin()));
+            }
+        });
+
+        // ペット取得
+        PetRepository.getPetById(getPetId(), getedPet -> {
+            pet = getedPet;
+            if (pet != null) {
+                tvPetName.setText(pet.getName());   // ペットの名前を表示
+            }
+        });
 
         catImageView = findViewById(R.id.catImageView);
 
@@ -37,36 +65,27 @@ public class HomeActivity extends AppCompatActivity {
         }, 1000); // 初回は1秒後に実行
 
         //ショップ画面遷移
-        findViewById(R.id.bt_shop).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        findViewById(R.id.bt_shop).setOnClickListener(view -> {
 
-                //ホーム画面からショップ画面に遷移
-                Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
+            //ホーム画面からショップ画面に遷移
+            Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
+            startActivity(intent);
         });
 
         //アチーブメント画面遷移
-        findViewById(R.id.bt_achievement).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        findViewById(R.id.bt_achievement).setOnClickListener(view -> {
 
-                //ホーム画面からアチーブメント画面に遷移
-                Intent intent = new Intent(HomeActivity.this, AchievementsActivity.class);
-                startActivity(intent);
-            }
+            //ホーム画面からアチーブメント画面に遷移
+            Intent intent = new Intent(HomeActivity.this, AchievementsActivity.class);
+            startActivity(intent);
         });
 
         //ヒストリー画面遷移
-        findViewById(R.id.bt_history).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        findViewById(R.id.bt_history).setOnClickListener(view -> {
 
-                //ホーム画面からヒストリー画面に遷移
-                Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
+            //ホーム画面からヒストリー画面に遷移
+            Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
+            startActivity(intent);
         });
 
     }
@@ -91,4 +110,15 @@ public class HomeActivity extends AppCompatActivity {
         handler.removeCallbacksAndMessages(null);
     }
 
+    // ローカルのペットIDを取得する
+    private int getPetId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("petInfo", MODE_PRIVATE);
+        return sharedPreferences.getInt("petId", -1);
+    }
+
+    // ローカルのペットIDを取得する
+    private int getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return sharedPreferences.getInt("userId", -1);
+    }
 }
