@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="@+id/answer1EditText" />
 
     <ImageButton
-        android:id="@+id/btBackFromShop"
+        android:id="@+id/btBackFromAchievevement"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
@@ -99,5 +99,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btBackFromShop" />
+        app:layout_constraintTop_toBottomOf="@+id/btBackFromAchievevement" />
 </androidx.constraintlayout.widget.ConstraintLayout>

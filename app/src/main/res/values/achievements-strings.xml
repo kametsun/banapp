@@ -9,8 +9,9 @@
     <string name="tv_achievements_get100">¥100獲得</string>
     <string name="tv_achievements_get150">¥150獲得</string>
     <string name="tv_achievements_get200">¥200獲得</string>
-    <string name="bt_achievements_get">GET</string>
-    <string name="bt_achievements_received">RECEIVED</string>
+    <string name="bt_achievements_unget">未達成</string>
+    <string name="bt_achievements_get">受け取る</string>
+    <string name="bt_achievements_received">達成済み</string>
     <!--    ↓は不要になったら消してください-->
     <string name="bt_achievements_back">戻る</string>
     <!--    ↑は不要になったら消してください-->

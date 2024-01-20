@@ -14,7 +14,7 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
 
         //戻る処理
-        findViewById(R.id.btBackFromShop).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btBackFromAchievevement).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserInfoActivity.this, HomeActivity.class);
