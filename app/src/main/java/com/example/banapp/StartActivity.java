@@ -19,7 +19,7 @@ public class StartActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             Intent intent;
             if (getUserId() != -1) {
-                intent = new Intent(StartActivity.this, MainActivity.class);
+                intent = new Intent(StartActivity.this, HomeActivity.class);
             } else {
                 intent = new Intent(StartActivity.this, UserRegistrationActivity.class);
             }

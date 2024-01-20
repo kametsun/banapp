@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_history_title">ヒストリー</string>
+    <string name="tv_history_pet">ペットの名前:たろう</string>
+    <string name="tv_history_days">生存期間:3日</string>
+    <string name="tv_history_money">得したお金:15000円</string>
+<!--    ↓は後で消してください-->
+    <string name="bt_history_back">戻る</string>
+<!--    ↑は後で消してください-->
+</resources>
