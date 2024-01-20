@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -100,12 +101,24 @@ public class HomeActivity extends AppCompatActivity {
 
     //ペットの画像を切り替えるメソッド
     private void switchCatImage() {
+        Random random = new Random();
+        int randomNum = random.nextInt(10);
         if (isCat1Visible) {
-            //2枚目に変更
-            catImageView.setImageResource(R.drawable.cat2);
+            if(randomNum == 0){
+                //4枚目に変更
+                catImageView.setImageResource(R.drawable.cat2_closed);
+            }else {
+                //2枚目に変更
+                catImageView.setImageResource(R.drawable.cat2);
+            }
         } else {
-            //1枚目に変更
-            catImageView.setImageResource(R.drawable.cat1);
+            if(randomNum == 0) {
+                //3枚目に変更
+                catImageView.setImageResource(R.drawable.cat1_closed);
+            }else {
+                //1枚目に変更
+                catImageView.setImageResource(R.drawable.cat1);
+            }
         }
         //フラグを切り替え
         isCat1Visible = !isCat1Visible;
