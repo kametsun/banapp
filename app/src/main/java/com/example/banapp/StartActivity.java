@@ -18,18 +18,15 @@ public class StartActivity extends AppCompatActivity {
         // Handlerを使用して3秒後にMainActivityに遷移する
         new Handler().postDelayed(() -> {
             Intent intent;
-
-            if (getUserId() == -1) {
+            if ((getUserId() == -1) && (getPetId() == -1)) {
                 intent = new Intent(StartActivity.this, UserRegistrationActivity.class);
-            }
-
-            if (getUserId() != -1) {
-                intent = new Intent(StartActivity.this, HomeActivity.class);
+            } else if ((getUserId() != -1) && (getPetId() == -1)) {
+                intent = new Intent(StartActivity.this, PetRegistrationActivity.class);
             } else {
-                intent = new Intent(StartActivity.this, UserRegistrationActivity.class);
+                intent = new Intent(StartActivity.this, CheckActivity.class);
             }
+
             startActivity(intent);
-            // 現在のアクティビティを終了
             finish();
         }, 3000); // 3秒
     }
@@ -37,5 +34,10 @@ public class StartActivity extends AppCompatActivity {
     private int getUserId() {
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         return sharedPreferences.getInt("userId", -1);
+    }
+
+    private int getPetId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("petInfo", MODE_PRIVATE);
+        return sharedPreferences.getInt("petId", -1);
     }
 }

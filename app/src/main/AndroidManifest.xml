@@ -40,6 +40,9 @@
             android:name=".CheckActivity"
             android:exported="true" />
         <activity
+            android:name=".DeathActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
