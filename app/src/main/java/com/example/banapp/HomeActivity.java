@@ -106,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         if (isCat1Visible) {
             if(randomNum == 0){
                 //4枚目に変更
-                catImageView.setImageResource(R.drawable.cat2_closed);
+                catImageView.setImageResource(R.drawable.cat2);
             }else {
                 //2枚目に変更
                 catImageView.setImageResource(R.drawable.cat2);
@@ -114,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             if(randomNum == 0) {
                 //3枚目に変更
-                catImageView.setImageResource(R.drawable.cat1_closed);
+                catImageView.setImageResource(R.drawable.cat1);
             }else {
                 //1枚目に変更
                 catImageView.setImageResource(R.drawable.cat1);
