@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tv_achievements_title">アチーブメント</string>
-    <string name="tv_achievements_feed1">1回餌やりしよう</string>
-    <string name="tv_achievements_feed_day3">3日餌やりしよう</string>
-    <string name="tv_achievements_feed_day5">5日餌やりしよう</string>
-    <string name="tv_achievements_feed_week1">1週間餌やりしよう</string>
+    <string name="tv_achievements_feed1">餌やりをしてみよう</string>
+    <string name="tv_achievements_feed_day3">3日連続餌やりをしよう  </string>
+    <string name="tv_achievements_feed_day5">5日連続餌やりをしよう</string>
+    <string name="tv_achievements_feed_week1">1週間餌やりをしよう </string>
     <string name="tv_achievements_get50">¥50獲得</string>
     <string name="tv_achievements_get100">¥100獲得</string>
     <string name="tv_achievements_get150">¥150獲得</string>
