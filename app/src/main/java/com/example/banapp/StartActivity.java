@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
             } else {
                 intent = new Intent(StartActivity.this, CheckActivity.class);
             }
-            intent = new Intent(StartActivity.this, HomeActivity.class);
+            //intent = new Intent(StartActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }, 3000); // 3秒
