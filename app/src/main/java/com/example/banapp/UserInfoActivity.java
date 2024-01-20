@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class User_infoActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,10 +14,10 @@ public class User_infoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
 
         //戻る処理
-        findViewById(R.id.bt_Back_user_info).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btBackFromShop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(User_infoActivity.this, HomeActivity.class);
+                Intent intent = new Intent(UserInfoActivity.this, HomeActivity.class);
 
                 startActivity(intent);
             }

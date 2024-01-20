@@ -46,7 +46,7 @@ public class ShopActivity extends AppCompatActivity {
         });
 
         //戻る処理
-        findViewById(R.id.bt_Back_shop).setOnClickListener(view -> navigateToHome());
+        findViewById(R.id.btBackFromShop).setOnClickListener(view -> navigateToHome());
     }
 
     private void addButton(LinearLayout layout, int imageResourceId, Item item) {
