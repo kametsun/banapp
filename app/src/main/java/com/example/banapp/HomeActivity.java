@@ -58,16 +58,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-//        //ヒストリー画面遷移
-//        findViewById(R.id.bt_history).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+        //ヒストリー画面遷移
+        findViewById(R.id.bt_history).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-//                //ホーム画面からヒストリー画面に遷移
-//                Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+                //ホーム画面からヒストリー画面に遷移
+                Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

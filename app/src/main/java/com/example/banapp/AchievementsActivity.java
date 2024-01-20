@@ -13,14 +13,14 @@ public class AchievementsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievements);
 
-//        //ボタンを押した時にホーム画面へ遷移（ボタン名は仮の名前のため後で変える）
-//        findViewById(R.id.bt_test_home).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(AchievementActivity.this, HomeActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        //ボタンを押した時にホーム画面へ遷移（ボタン名は仮の名前のため後で変える）
+        findViewById(R.id.btBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AchievementsActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 //        //ボタンを押した時にヒストリー画面へ遷移（ボタン名は仮の名前のため後で変える）
 //        findViewById(R.id.bt_test_history).setOnClickListener(new View.OnClickListener() {
 //            @Override
