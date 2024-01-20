@@ -21,6 +21,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".CheckActivity"
+            android:exported="true">
+            <!-- 起動するactivityを変更するには以下をactivityタグの中に入れる -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ShopActivity"
             android:exported="false" />
         <activity
@@ -30,12 +40,7 @@
             android:name=".StartActivity"
             android:exported="true">
 
-            <!-- 起動するactivityを変更するには以下をactivityタグの中に入れる -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".PetRegistrationActivity"
