@@ -17,7 +17,7 @@ public class CheckActivity extends AppCompatActivity {
         findViewById(R.id.bt_yes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CheckActivity.this, HomeActivity.class);
+                Intent intent = new Intent(CheckActivity.this, DeathActivity.class);
 
                 startActivity(intent);
             }
