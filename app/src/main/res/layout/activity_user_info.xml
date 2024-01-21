@@ -25,6 +25,7 @@
         android:background="@drawable/shape_style"
         android:gravity="center"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_name" />
@@ -51,6 +52,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/shape_style"
         android:gravity="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserNameDisplay" />
@@ -74,6 +76,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/shape_style"
         android:gravity="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserPriceDisplay" />
