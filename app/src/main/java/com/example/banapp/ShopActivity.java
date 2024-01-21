@@ -26,7 +26,7 @@ public class ShopActivity extends AppCompatActivity {
         tvCoin = findViewById(R.id.tvCoin);
 
         // ユーザの取得
-        UserRepository.getUserById(getUserId(), getedUser -> {
+        UserRepository.getUserAddCoinById(getUserId(), getedUser -> {
             user = getedUser;
             if (user != null) {
                 tvCoin.setText(String.valueOf(user.getCoin()));
