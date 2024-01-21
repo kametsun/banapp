@@ -23,7 +23,7 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-        private Pet pet;
+//        private Pet pet;
 
         tvCoin = findViewById(R.id.tvCoin);
 
@@ -109,7 +109,7 @@ public class ShopActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btIcdcrime.setOnClickListener(v -> {
+        btIcecrime.setOnClickListener(v -> {
 
 
             //ショップ画面からホームへ遷移
