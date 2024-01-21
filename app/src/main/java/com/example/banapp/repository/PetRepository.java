@@ -48,7 +48,7 @@ public class PetRepository {
                     JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
                     String deathTimeStr = jsonResponse.get("death_time").getAsString();
 
-                    DateTimeFormatter formatter = null;
+                    DateTimeFormatter formatter;
                     LocalDateTime deathTime = null;
 
                     /*
@@ -62,7 +62,7 @@ public class PetRepository {
                     Log.d("60ぎょうめ ペットの時間 -> ", pet.getDeathTime().toString());
 
                     if (listener != null) {
-                        new Handler(Looper.getMainLooper()).post(() -> listener.updateDeathAtListener());
+                        new Handler(Looper.getMainLooper()).post(listener::updateDeathAtListener);
                     }
                 }
             } catch (IOException e) {

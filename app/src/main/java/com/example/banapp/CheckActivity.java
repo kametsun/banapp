@@ -3,7 +3,6 @@ package com.example.banapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,12 +42,13 @@ public class CheckActivity extends AppCompatActivity {
 
         //Noボタン処理
         findViewById(R.id.bt_no).setOnClickListener(view -> {
-            Log.d("42行目", "ボタンが押された");
             if ((user != null) && (pet != null)) {
-                HistoryRepository.createHistory(user, pet, () -> {
+                PetRepository.updateDeathAt(pet, () -> {
                     resetPetId();
-                    Intent intent = new Intent(CheckActivity.this, DeathActivity.class);
-                    startActivity(intent);
+                    HistoryRepository.createHistory(user, pet, () -> {
+                        Intent intent = new Intent(CheckActivity.this, DeathActivity.class);
+                        startActivity(intent);
+                    });
                 });
             }
         });
