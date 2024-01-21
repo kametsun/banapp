@@ -11,11 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.banapp.model.Item;
-import com.example.banapp.model.User;
 import com.example.banapp.repository.UserRepository;
 
 public class ShopActivity extends AppCompatActivity {
-    private User user;
     private TextView tvCoin;
 
     @Override
@@ -26,8 +24,7 @@ public class ShopActivity extends AppCompatActivity {
         tvCoin = findViewById(R.id.tvCoin);
 
         // ユーザの取得
-        UserRepository.getUserAddCoinById(getUserId(), getedUser -> {
-            user = getedUser;
+        UserRepository.getUserAddCoinById(getUserId(), user -> {
             if (user != null) {
                 tvCoin.setText(String.valueOf(user.getCoin()));
             }
@@ -36,14 +33,12 @@ public class ShopActivity extends AppCompatActivity {
         // 商品ごとにボタンを作成
         LinearLayout buttonsLayout = findViewById(R.id.bt_products);
 
-        Item.getItems(items -> {
-            runOnUiThread(() -> {
-                for (Item item : items) {
-                    int imageResourceId = getImageResourceId(item.getName());
-                    addButton(buttonsLayout, imageResourceId, item);
-                }
-            });
-        });
+        Item.getItems(items -> runOnUiThread(() -> {
+            for (Item item : items) {
+                int imageResourceId = getImageResourceId(item.getName());
+                addButton(buttonsLayout, imageResourceId, item);
+            }
+        }));
 
         //戻る処理
         findViewById(R.id.btBackFromAchievevement).setOnClickListener(view -> navigateToHome());
