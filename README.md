@@ -2,11 +2,17 @@
 
 【技育CAMP】マンスリーハッカソン vol.13参加作品
 
-2024/01/20 スタート画面修正
 
+「育成ゲーム」 + 「禁煙」を組み合わせたアプリケーションです。
+バックエンドはPythonとMySQLで実装しています <br>
+-> https://github.com/onodaseiya/banapp-backend
 ## Skills
 
 [![My Skills](https://skillicons.dev/icons?i=java,gradle,androidstudio,git,github,aws,mysql,py,fastapi,figma)](https://skillicons.dev)
+
+<img src="./Screenshot_20240121_202809.png" width="200" height="450">
+<img src="image.png" width="200" height="450">
+
 
 ## Member
 
