@@ -6,73 +6,78 @@
     android:background="@color/windowBackground">
 
     <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_user_name"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUserNameDisplay"
+        app:layout_constraintStart_toStartOf="@+id/tvUserNameDisplay" />
+
+    <TextView
+        android:id="@+id/tvUserNameDisplay"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/shape_style"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+
+
+
+
+    <TextView
         android:id="@+id/cigarette_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_cigarette_num"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/answer2EditText"
-        app:layout_constraintEnd_toEndOf="@+id/answer2EditText"
-        app:layout_constraintStart_toStartOf="@+id/answer2EditText" />
+        app:layout_constraintBottom_toTopOf="@+id/tvUserPriceDisplay"
+        app:layout_constraintEnd_toEndOf="@+id/tvUserPriceDisplay"
+        app:layout_constraintStart_toStartOf="@+id/tvUserPriceDisplay" />
 
-    <EditText
-        android:id="@+id/answer2EditText"
+    <TextView
+        android:id="@+id/tvUserPriceDisplay"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/shape_style"
-        android:hint="表示する"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer1EditText" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUserNameDisplay" />
 
     <TextView
         android:id="@+id/cigarette_oneday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_cigarette_per_day"
-        app:layout_constraintBottom_toTopOf="@+id/answer3EditText"
-        app:layout_constraintEnd_toEndOf="@+id/answer3EditText"
-        app:layout_constraintStart_toStartOf="@+id/answer3EditText" />
-
-    <EditText
-        android:id="@+id/answer3EditText"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/shape_style"
-        android:hint="表示する"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer2EditText" />
-
-    <EditText
-        android:id="@+id/answer1EditText"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/shape_style"
-        android:hint="表示する"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+        app:layout_constraintBottom_toTopOf="@+id/tvUserNumDisplay"
+        app:layout_constraintEnd_toEndOf="@+id/tvUserNumDisplay"
+        app:layout_constraintStart_toStartOf="@+id/tvUserNumDisplay" />
 
     <TextView
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_user_name"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/answer1EditText"
-        app:layout_constraintStart_toStartOf="@+id/answer1EditText" />
+        android:id="@+id/tvUserNumDisplay"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/shape_style"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserPriceDisplay" />
+
 
     <ImageButton
         android:id="@+id/btBackFromAchievevement"
