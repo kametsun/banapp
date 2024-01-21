@@ -40,7 +40,7 @@ public class BaitLogRepository {
 
     public static void getBaitLog(User user, GetBaitLogListener listener) {
         new Thread(() -> {
-            String baseUrl = "http://ec2-57-181-83-131.ap-northeast-1.compute.amazonaws.com:8000/users/baitlogs/";
+            String baseUrl = "http://10.0.2.2:8000/users/baitlogs/";
             try {
                 URL url = new URL(baseUrl + user.getId());
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
