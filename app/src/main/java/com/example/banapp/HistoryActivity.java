@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.banapp.model.History;
 import com.example.banapp.model.Pet;
+import com.example.banapp.repository.PetRepository;
+import com.example.banapp.repository.UserRepository;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -23,44 +25,17 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-//
-//            // ユーザの取得
-//            UserRepository.getUserById(getUserId(), getedUser -> {
-//                user = getedUser;
-//                if (user != null) {
-//                    tvCoin.setText(String.valueOf(user.getCoin()));
-//                }
-//            });
-//
-//            // ペット取得
-//            PetRepository.getPetById(getPetId(), getedPet -> {
-//                pet = getedPet;
-//                if (pet != null) {
-//                    tvPetName.setText(pet.getName());   // ペットの名前を表示
-//                }
-//            });
-
-        final String[] pets = {"たろう", "じろう", "さぶろう", "たろうまる", "たろうたろう", "あいうえお"};
-        final int[] days = {1, 2, 3, 4, 5, 6};
-        final int[] money = {100, 200, 300, 400, 500, 600};
-
-
         // ペットごとにTextViewを作成
         LinearLayout historyLayout = findViewById(R.id.linearLayoutHistory);
 
-        for (int i = 0; i < pets.length; i++) {
-            addTextView(historyLayout, pets[i], days[i], money[i]);
-
-        }
-
-//            Item.getItems(histories -> {
-//                runOnUiThread(() -> {
-//                    for (History history : histories) {
-//                        int imageResourceId = getImageResourceId(item.getName());
-//                        addTextView(historyLayout, history);
-//                    }
-//                });
-//            });
+        // ユーザのヒストリー取得
+        UserRepository.getHistoriesByUserId(getUserId(), histories -> {
+            for (History history : histories) {
+                PetRepository.getPetById(history.getPetId(), pet -> {
+                    addTextView(historyLayout, pet.getName(), pet.daysFromBirthToDeath(), history.getMoreMoney());
+                });
+            }
+        });
 
         //戻る処理
         findViewById(R.id.btBackFromHistory).setOnClickListener(view -> navigateToHome());

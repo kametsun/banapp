@@ -1,8 +1,11 @@
 package com.example.banapp.model;
 
+import android.os.Build;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /*
  * [
@@ -84,5 +87,14 @@ public class Pet {
 
     public String getName() {
         return name;
+    }
+
+    public int daysFromBirthToDeath() {
+        if (createdAt != null && deathTime != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return (int) ChronoUnit.DAYS.between(createdAt, deathTime);
+            }
+        }
+        return 0;
     }
 }
