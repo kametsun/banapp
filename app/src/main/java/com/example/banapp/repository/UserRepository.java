@@ -245,4 +245,8 @@ public class UserRepository {
     public interface GetHistoriesListener {
         void getHistoriesListener(List<History> histories);
     }
+
+    public interface BuyItemListener {
+        void buyItemListener();
+    }
 }
