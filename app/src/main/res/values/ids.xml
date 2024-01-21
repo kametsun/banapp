@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="btKurowassan" type="id"></item>
+    <item name="btKurowassan" type="id" />
     <item name="btHambargar" type="id" />
     <item name="btIcecrime" type="id" />
     <item name="btRamen" type="id" />

@@ -1,74 +1,58 @@
 package com.example.banapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.banapp.repository.BaitLogRepository;
+import com.example.banapp.repository.UserRepository;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class AchievementsActivity extends AppCompatActivity {
+    Button btAchievementsFeed1, btAchievementsFeedDay3, btAchievementsFeedDay5, btAchievementsFeedWeek1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievements);
 
-        //ボタンを押した時にホーム画面へ遷移（ボタン名は仮の名前のため後で変える）
-        findViewById(R.id.btBackFromAchievevement).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AchievementsActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //仮の変数（実際にはDBから取得した値を格納する）
-        //連続餌やり日数
-        int continueDays=5;
-        //総餌やり日数
-        int totalCount=6;
-
-
         //餌やりをしてみようのボタン
-        Button btAchievementsFeed1= findViewById(R.id.btAchievementsFeed1);
+        btAchievementsFeed1 = findViewById(R.id.btAchievementsFeed1);
         btAchievementsFeed1.setEnabled(false);
         //3日連続餌やりをしようのボタン
-        Button btAchievementsFeedDay3= findViewById(R.id.btAchievementsFeedDay3);
+        btAchievementsFeedDay3 = findViewById(R.id.btAchievementsFeedDay3);
         btAchievementsFeedDay3.setEnabled(false);
         //5日連続餌やりをしようのボタン
-        Button btAchievementsFeedDay5= findViewById(R.id.btAchievementsFeedDay5);
+        btAchievementsFeedDay5 = findViewById(R.id.btAchievementsFeedDay5);
         btAchievementsFeedDay5.setEnabled(false);
         //1週間餌やりをしようのボタン
-        Button btAchievementsFeedWeek1= findViewById(R.id.btAchievementsFeedWeek1);
+        btAchievementsFeedWeek1 = findViewById(R.id.btAchievementsFeedWeek1);
         btAchievementsFeedWeek1.setEnabled(false);
 
-        //餌やりをしてみよう
-        if(0<totalCount){
-            btAchievementsFeed1.setText(R.string.bt_achievements_get);
-            btAchievementsFeed1.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
-            btAchievementsFeed1.setEnabled(true);//ボタンを押せるようにする
-        }
-        //3日連続餌やりをしよう
-        if(3<=continueDays){
-            btAchievementsFeedDay3.setText(R.string.bt_achievements_get);
-            btAchievementsFeedDay3.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
-            btAchievementsFeedDay3.setEnabled(true);//ボタンを押せるようにする
-        }
-        //5日連続餌やりをしよう
-        if(5<=continueDays){
-            btAchievementsFeedDay5.setText(R.string.bt_achievements_get);
-            btAchievementsFeedDay5.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
-            btAchievementsFeedDay5.setEnabled(true);//ボタンを押せるようにする
-        }
+        AtomicInteger continueDays = new AtomicInteger();
+        AtomicInteger totalCount = new AtomicInteger();
 
-        //1週間餌やりをしよう
-        if(7<=totalCount){
-            btAchievementsFeedWeek1.setText(R.string.bt_achievements_get);
-            btAchievementsFeedWeek1.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
-            btAchievementsFeedWeek1.setEnabled(true);//ボタンを押せるようにする
-        }
+        UserRepository.getUserAddCoinById(getUserId(),
+                user -> BaitLogRepository.getBaitLog(user, baitLog -> {
+                    continueDays.set(baitLog.getContunueday());
+                    totalCount.set(baitLog.getTotalCount());
+
+                    runOnUiThread(() -> {
+                        updateButtons(continueDays, totalCount);
+                    });
+                }));
+
+        //ボタンを押した時にホーム画面へ遷移（ボタン名は仮の名前のため後で変える）
+        findViewById(R.id.btBackFromAchievevement).setOnClickListener(v -> {
+            Intent intent = new Intent(AchievementsActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
+
 
         //餌やりをしてみようボタン
         findViewById(R.id.btAchievementsFeed1).setOnClickListener(view -> {
@@ -114,5 +98,38 @@ public class AchievementsActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+    }
+
+    private int getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        return sharedPreferences.getInt("userId", -1);
+    }
+
+    private void updateButtons(AtomicInteger continueDays, AtomicInteger totalCount) {
+        //餌やりをしてみよう
+        if (0 < totalCount.get()) {
+            btAchievementsFeed1.setText(R.string.bt_achievements_get);
+            btAchievementsFeed1.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
+            btAchievementsFeed1.setEnabled(true);//ボタンを押せるようにする
+        }
+        //3日連続餌やりをしよう
+        if (3 <= continueDays.get()) {
+            btAchievementsFeedDay3.setText(R.string.bt_achievements_get);
+            btAchievementsFeedDay3.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
+            btAchievementsFeedDay3.setEnabled(true);//ボタンを押せるようにする
+        }
+        //5日連続餌やりをしよう
+        if (5 <= continueDays.get()) {
+            btAchievementsFeedDay5.setText(R.string.bt_achievements_get);
+            btAchievementsFeedDay5.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
+            btAchievementsFeedDay5.setEnabled(true);//ボタンを押せるようにする
+        }
+
+        //1週間餌やりをしよう
+        if (7 <= totalCount.get()) {
+            btAchievementsFeedWeek1.setText(R.string.bt_achievements_get);
+            btAchievementsFeedWeek1.setBackgroundColor(ContextCompat.getColor(this, R.color.pinkButton));//ボタンの色をピンク色にする
+            btAchievementsFeedWeek1.setEnabled(true);//ボタンを押せるようにする
+        }
     }
 }
