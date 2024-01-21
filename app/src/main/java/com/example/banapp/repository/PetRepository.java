@@ -192,7 +192,7 @@ public class PetRepository {
                     reader.close();
 
                     if (listener != null) {
-                        new Handler(Looper.getMainLooper()).post(() -> listener.updatePetEnergyListener(energy));
+                        new Handler(Looper.getMainLooper()).post(() -> listener.updatePetEnergyListener());
                     }
                 }
             } catch (JSONException | IOException e) {
@@ -214,6 +214,6 @@ public class PetRepository {
     }
 
     public interface UpdatePeteEnergyListener {
-        void updatePetEnergyListener(int energy);
+        void updatePetEnergyListener();
     }
 }

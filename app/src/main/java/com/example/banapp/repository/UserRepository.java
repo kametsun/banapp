@@ -71,6 +71,49 @@ public class UserRepository {
         }).start();
     }
 
+    // IdからUserオブジェクトを返す(コイン付き)
+    public static void getUserAddCoinById(int id, GetUerListener listener) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(BASE_URL + "users/" + id);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                connection.connect();   // 実行
+
+                int responseCode = connection.getResponseCode();    //レスポンスコード確認
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    // JSON配列を解析
+                    JSONArray jsonArray = new JSONArray(response.toString());
+                    // 配列の最初の要素を取得
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+                    User user = new User(
+                            jsonObject.getInt("id"),
+                            jsonObject.getString("name"),
+                            jsonObject.getInt("cigarette_price"),
+                            jsonObject.getInt("cigarette_per_day"),
+                            jsonObject.getInt("coin")
+                    );
+
+                    if (listener != null) {
+                        new Handler(Looper.getMainLooper()).post(() -> listener.getUserListener(user));
+                    }
+                }
+            } catch (IOException | JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
     // ユーザを作成する
 
     public static void createUserIntoDB(User user, CreateUserListener listener) {
@@ -145,7 +188,7 @@ public class UserRepository {
                     reader.close();
 
                     if (listener != null) {
-                        new Handler(Looper.getMainLooper()).post(() -> listener.updateUserCoinsListener(userId, coin));
+                        new Handler(Looper.getMainLooper()).post(() -> listener.updateUserCoinsListener());
                     }
                 }
             } catch (IOException | JSONException e) {
@@ -196,7 +239,7 @@ public class UserRepository {
     }
 
     public interface UpdateUserCoinsListener {
-        void updateUserCoinsListener(int userId, int coin);
+        void updateUserCoinsListener();
     }
 
     public interface GetHistoriesListener {

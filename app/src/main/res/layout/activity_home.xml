@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bt_profile" />
 
     <TextView
-        android:id="@+id/tv_pet_energy"
+        android:id="@+id/tvPetEnergie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pet_energy" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPetEnergie" />
 
     <ImageView
         android:id="@+id/bt_profile"

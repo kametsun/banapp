@@ -28,6 +28,7 @@ public class Pet {
     private LocalDateTime deathTime;
     @SerializedName("created_at")
     private LocalDateTime createdAt;
+
     public Pet() {
     }
 
@@ -55,6 +56,10 @@ public class Pet {
         this.id = id;
         this.userId = userId;
         this.name = name;
+    }
+
+    public int getHunger() {
+        return hunger;
     }
 
     public LocalDateTime getCreatedAt() {

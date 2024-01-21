@@ -16,6 +16,13 @@ public class User {
     @SerializedName("cigarette_per_day")
     private int cigarettePerDay;
     private int coin;
+    public User(int id, String name, int cigarettePrice, int cigarettePerDay, int coin) {
+        this.id = id;
+        this.name = name;
+        this.cigarettePrice = cigarettePrice;
+        this.cigarettePerDay = cigarettePerDay;
+        this.coin = coin;
+    }
 
     // デフォルトコンストラクタ -> 新規登録とかでプロパティを入れていってAPIに渡す
     public User() {

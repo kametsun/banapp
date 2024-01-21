@@ -27,10 +27,11 @@ public class PetRegistrationActivity extends AppCompatActivity {
 
             PetRepository.createPetIntoDB(newPet, pet -> {
                 savePetId(pet.getId());
-
-                Intent intent = new Intent(PetRegistrationActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
+                PetRepository.updatePetEnergy(pet.getId(), 240, () -> {
+                    Intent intent = new Intent(PetRegistrationActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
             });
         });
     }

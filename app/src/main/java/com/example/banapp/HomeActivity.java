@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.banapp.model.Pet;
-import com.example.banapp.model.User;
 import com.example.banapp.repository.PetRepository;
 import com.example.banapp.repository.UserRepository;
 
@@ -19,8 +18,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView catImageView;  //画像格納
     private boolean isCat1Visible = true;  //画像を切り替えるためのフラグ
     private Pet pet;    // ペットオブジェクトを格納する
-    private User user;  // ユーザオブジェクトを格納
-    private TextView tvPetName, tvCoin; //ペットの名前を格納する, コイン数
+    private TextView tvPetName, tvCoin, tvPetEnergie; //ペットの名前を格納する, コイン数
     private Handler handler; //
 
     @Override
@@ -31,13 +29,11 @@ public class HomeActivity extends AppCompatActivity {
 
         tvPetName = findViewById(R.id.pet_name);
         tvCoin = findViewById(R.id.tv_coin);
+        tvPetEnergie = findViewById(R.id.tvPetEnergie);
 
         // ユーザを取得
-        UserRepository.getUserById(getUserId(), getedUser -> {
-            user = getedUser;
-            if (user != null) {
-                tvCoin.setText(String.valueOf(user.getCoin()));
-            }
+        UserRepository.getUserAddCoinById(getUserId(), user -> {
+            tvCoin.setText(String.valueOf(user.getCoin()));
         });
 
         // ペット取得
@@ -45,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
             pet = getedPet;
             if (pet != null) {
                 tvPetName.setText(pet.getName());   // ペットの名前を表示
+                tvPetEnergie.setText(String.valueOf(pet.getHunger()));
             }
         });
 
